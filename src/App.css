@@ -1,0 +1,75 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Typewriter (JS-driven) caret + coming-soon fade-in */
+.typewriter {
+  display: inline;
+  white-space: normal; /* allow wrapping */
+  color: inherit; /* preserve heading color unless overridden */
+  font-weight: 800;
+}
+
+.typewriter-caret {
+  display: inline-block;
+  width: .15em;
+  height: 1em;
+  background-color: #3f3bde; /* team color caret */
+  margin-left: .18em;
+  vertical-align: text-bottom;
+  animation: blink-caret .75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0 }
+}
+
+/* Fade in the 'coming very soon' after typing finishes. We'll set an inline
+   animation-delay from the component so it aligns exactly with the typing duration. */
+.coming-soon {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1 }
+}
