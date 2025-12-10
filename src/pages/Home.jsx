@@ -1,6 +1,6 @@
 import React from "react";
-
-const Typewriter = ({ text, duration = 4000, className = '' }) => {
+import IntroScreen from "../component/Typewriter"
+const Typewriter = ({ text, duration = 2000, className = '' }) => {
   const [displayed, setDisplayed] = React.useState('');
   const prefersReduced =
     typeof window !== 'undefined' &&
@@ -35,34 +35,65 @@ const Typewriter = ({ text, duration = 4000, className = '' }) => {
   );
 };
 
-const Home = () => {
-  const [isVisible, setIsVisible] = React.useState(false);
+
+const NextScreen = ({ onFinish }) => {
+  const words = ["Railway", "Civils", "Nuclear", "Marine", "and many more..."];
+  const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    const id = setInterval(() => {
+      setIndex((prev) => prev + 1);
+    }, 500); // change every 1.5s
+
+    // stop after last word
+    if (index >= words.length) {
+      clearInterval(id);
+      onFinish();
+    }
+
+    return () => clearInterval(id);
+  }, [index, words.length, onFinish]);
 
   return (
-   <main className="flex flex-1 items-center justify-center  bg-white text-gray-900">
-  <section
-    className={`w-full flex flex-col items-center justify-center flex-1 transition-all duration-1000 transform ${
-      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-    }`}
-  >
-    <div className="max-w-5xl mx-auto px-4 text-center">
-      <h2 className="text-3xl text-[#3f3bde] md:text-6xl font-extrabold mb-4 leading-tight">
-        <Typewriter
-          text="Connecting workers to jobs in the construction industry"
-          duration={4200}
-        />
+    <main className="flex flex-1 items-center justify-center bg-[#3f3bde] text-white">
+      <h2 className="text-4xl md:text-6xl font-extrabold transition-all duration-500">
+        {words[index] || words[words.length - 1]}
       </h2>
-      <p className="coming-soon text-2xl md:text-3xl font-semibold text-[#A7A9AC]">
-        Launching very soon
-      </p>
-    </div>
-  </section>
-</main>
+    </main>
   );
 };
+
+const FinalScreen = () => (
+  <main className="flex max-w-5xl mx-auto px-4 text-center flex-1 items-center justify-center bg-white text-[#3f3bde]">
+    <h2 className="text-3xl md:text-6xl font-extrabold">
+      <Typewriter
+              text="Welcome to Civilinx."
+              duration={3000}
+      />
+      <p className="coming-soon text-2xl md:text-3xl font-semibold text-[#A7A9AC]">
+        Your gateway to jobs in the construction industry.
+      </p>
+
+
+    </h2>
+  </main>
+);
+
+
+const Home = () => {
+  const [phase, setPhase] = React.useState("intro");
+
+  React.useEffect(() => {
+    // move from Intro → Next after typewriter (4200ms) + 2000ms delay
+    const timer = setTimeout(() => setPhase("next"), 4200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (phase === "intro") return <IntroScreen />;
+  if (phase === "next") return <NextScreen onFinish={() => setPhase("final")} />;
+  if (phase === "final") return <FinalScreen />;
+};
+
+
 
 export default Home;
