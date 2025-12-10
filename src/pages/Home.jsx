@@ -37,7 +37,7 @@ const Typewriter = ({ text, duration = 2000, className = '' }) => {
 
 
 const NextScreen = ({ onFinish }) => {
-  const words = ["Railway", "Civils", "Nuclear", "Marine", "and many more..."];
+  const words = ["Railway", "Road", "Energy", "Building", "and many more..."];
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
