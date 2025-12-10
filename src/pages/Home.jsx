@@ -43,13 +43,13 @@ const Home = () => {
   }, []);
 
   return (
-   <main className="flex items-center justify-center  bg-white text-gray-900">
+   <main className="flex flex-1 items-center justify-center  bg-white text-gray-900">
   <section
     className={`w-full flex flex-col items-center justify-center flex-1 transition-all duration-1000 transform ${
       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
     }`}
   >
-    <div className="max-w-6xl mx-auto px-4 text-center">
+    <div className="max-w-5xl mx-auto px-4 text-center">
       <h2 className="text-3xl text-[#3f3bde] md:text-6xl font-extrabold mb-4 leading-tight">
         <Typewriter
           text="Connecting workers to jobs in the construction industry"

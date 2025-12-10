@@ -32,7 +32,7 @@ const Header = () => {
         </div>
 
         {/* Logo + Navigation (Large screens) */}
-        <div className="hidden lg:flex items-center justify-between max-w-6xl mx-auto">
+        <div className="hidden lg:flex items-center justify-between  mx-auto">
           {/* Logo (left) */}
           <a href="/"><img src={logo} alt="Logo" className="h-12" /></a>
           
